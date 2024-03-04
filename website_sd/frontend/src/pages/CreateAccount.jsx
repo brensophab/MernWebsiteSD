@@ -20,7 +20,7 @@ const CreateAccount = () => {
           <label htmlFor="password">Password:</label>
           <input type="text" id="password" name="password" required="" />
           {/* Replace onclick with Link */}
-          <Link to="/dashboardIndex">
+          <Link to="/Dashboard">
             <button>Create an Account</button>
           </Link>
         </form>
