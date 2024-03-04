@@ -56,7 +56,7 @@ const Reports = () => {
           </div>
           <ul className="sidebar-list">
             <li className="sidebar-list-item">
-              <Link to="dashboardIndex.html">
+              <Link to="/Dashboard">
                 <span className="material-icons-outlined">dashboard</span> Dashboard
               </Link>
             </li>
@@ -76,7 +76,7 @@ const Reports = () => {
               </Link>
             </li>
             <li className="sidebar-list-item">
-              <Link to="reportIndex.html" title="View your Reports">
+              <Link to="/Reports" title="View your Reports">
                 <span className="material-icons-outlined">poll</span> Reports
               </Link>
             </li>
