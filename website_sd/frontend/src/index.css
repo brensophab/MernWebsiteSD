@@ -42,10 +42,11 @@ button {
   body {
     margin: 0;
     padding: 0;
-    background-color: #1d2634;
+    background-color: #263043;
     color: #9e9ea4;
     font-family: 'Montserrat', sans-serif;
   }
+
   
   .container {
     background-color: #263043;

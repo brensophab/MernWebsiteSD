@@ -25,7 +25,7 @@ const CreateAccount = () => {
           </Link>
         </form>
         <p>
-          Have an account? <Link to="/loginpage">Login</Link> {/* Use Link for Login */}
+          Have an account? <Link to="/login">Login</Link> {/* Use Link for Login */}
         </p>
       </div>
     </>

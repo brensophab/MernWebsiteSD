@@ -6,12 +6,14 @@ import CreateAccount from "./pages/CreateAccount";
 import Reports from "./pages/Reports";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path="/create-account" element={<CreateAccount/>}/>
+      <Route path="/login" element={<Login/>}/>
       <Route path="/reports" element={<Reports/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/error" element={<Error/>}/>
