@@ -1,6 +1,10 @@
 {
   "dependencies": {
     "apexcharts": "^3.46.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "mongoose": "^8.2.3",
     "react-apexcharts": "^1.4.1"
   }
 }
