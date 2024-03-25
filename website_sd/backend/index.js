@@ -2,23 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const { mongoDBURL, PORT } = require('./config') ;
+require("dotenv").config();
+const cookieParser = require("cookie-parser");
+const authRoute = require("./Routes/AuthRoute");
+const { MONGO_URL, PORT } = process.env;
 
-app.use(express.json());
-
-// Middleware for handling CORS POLICY
-// Option 1: Allow All Origins with Default of cors(*)
-app.use(cors());
-// Option 2: Allow Custom Origins
-// app.use(
-//   cors({
-//     origin: 'http://localhost:3000',
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type'],
-//   })
-// );
 mongoose
-  .connect(mongoDBURL, {
+  .connect(MONGO_URL, {
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
   })
@@ -36,5 +26,8 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 
 app.use(express.json());
+
+app.use("/", authRoute);
