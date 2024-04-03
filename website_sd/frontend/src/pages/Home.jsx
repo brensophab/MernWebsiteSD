@@ -64,6 +64,31 @@ const Home = () => {
           {isLoggedIn ? (
             <div className="home_page">
               <h4>Welcome <span>{username}</span></h4>
+              <center>
+              <h1 style={{ fontSize: 90 }}>Peer Review</h1>
+              <h3 style={{ fontSize: 50 }}>Enhanced Analysis</h3>
+              <img
+                src={trend1}
+                width={300}
+                height={300}
+                style={{ backgroundColor: "darkblue" }}
+                alt="Trend 1"
+              />
+              <img
+                src={trend2}
+                width={300}
+                height={300}
+                style={{ backgroundColor: "darkblue" }}
+                alt="Trend 2"
+              />
+              <img
+                src={trend3}
+                width={300}
+                height={300}
+                style={{ backgroundColor: "darkblue" }}
+                alt="Trend 3"
+              />
+            </center>
             </div>
           ) : (
             <center>

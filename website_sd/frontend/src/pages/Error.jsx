@@ -10,7 +10,7 @@ const Error = () => {
       <h1>Error</h1>
       <p>
         Sorry, an error occurred or the link you clicked on does not exist.{" "}
-        <a href="index.html">Click here</a> to sign out.
+        <a href="/Dashboard">Click here</a> to go back to the dashboard.
       </p>
     </div>
   );
