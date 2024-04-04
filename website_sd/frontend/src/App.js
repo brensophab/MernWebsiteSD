@@ -7,6 +7,7 @@ import './index.css'
 import Reports from "./pages/Reports.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Error from "./pages/Error.jsx";
+import ApexChartTest from "./pages/ApexChartTest.jsx";
 const App = () => {
   return (
     <Routes>
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/reports" element={<Reports/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
+      <Route path="/Apex" element={<ApexChartTest/>}/>
       <Route path="*" element={<Error/>}/>
       {/* <Route path ="/ratings" element={<Ratings/>}/> */}
     </Routes>

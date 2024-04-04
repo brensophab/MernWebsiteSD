@@ -48,7 +48,7 @@ const Login = () => {
         handleError(message);
       }
     } catch (error) {
-      console.log(error);
+      handleError(error.response ? error.response.data.message : error.message);
     }
     setInputValue({
       ...inputValue,

@@ -66,7 +66,8 @@ module.exports.Login = async (req, res, next) => {
     });
 
     // Returning success response with message after successful login
-    res.status(201).json({ message: "User logged in successfully", success: true });
+    res.status(201).json({ message: "User logged in successfully", success: true, user: user.username });
+    
 
     // Calling next middleware function
     next();

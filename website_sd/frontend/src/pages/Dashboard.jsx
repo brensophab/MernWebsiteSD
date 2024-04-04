@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link } from 'react-router-dom';
 const Dashboard = () => {
   return (
     <>
@@ -10,75 +10,51 @@ const Dashboard = () => {
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
       {/* Material Icons */}
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
-      {/* Custom CSS */}
-      <link rel="stylesheet" href="css/dashboardStyles.css" />
       <div className="grid-container">
         {/* Header */}
         <header className="header">
-          <div className="menu-icon" >{/**onClick={openSidebar} */}
-            <span className="material-icons-outlined">menu</span>
-          </div>
-          <div className="header-left">
-            <span className="material-icons-outlined">search</span>
-          </div>
-          <div className="header-right">
-            {/* error temporary */}
-            <a href="error.html">
-              <span className="material-icons-outlined">notifications</span>
-            </a>
-            <a href="error.html">
-              <span className="material-icons-outlined">email</span>
-            </a>
-            <a href="error.html">
-              <span className="material-icons-outlined">account_circle</span>
-            </a>
-            <a href="index.html" title="logout">
-              <span className="material-icons-outlined">logout</span>
-            </a>
-          </div>
-        </header>
+        <div className="header-right">
+          <Link to="/error">
+            <span className="material-icons-outlined">notifications</span>
+          </Link>
+          <Link to="/error">
+            <span className="material-icons-outlined">email</span>
+          </Link>
+          <Link to="/error">
+            <span className="material-icons-outlined">account_circle</span>
+          </Link>
+          <Link to="/index" title="logout">
+            <span className="material-icons-outlined">logout</span>
+          </Link>
+        </div>
+      </header>
         {/* End Header */}
+
         {/* Sidebar */}
         <aside id="sidebar">
-          <div className="sidebar-title">
-            <div className="sidebar-brand">
-              <span className="material-icons-outlined">rate_review</span>Peer Review
-            </div>
-            <span className="material-icons-outlined" >{/**onClick={closeSidebar} */}
-              close
-            </span>
-          </div>
-          <ul className="sidebar-list">
-            {/* View Dashboard */}
-            <li className="sidebar-list-item">
-              <a href="dashboardIndex.html">
-                <span className="material-icons-outlined">dashboard</span>
-                Dashboard
-              </a>
-            </li>
-            {/* View Groups */}
-            <li className="sidebar-list-item">
-              <span className="material-icons-outlined">groups</span>
-              <a href="groups.html">Groups</a>
-            </li>
-            {/* Request Invite */}
-            <li className="sidebar-list-item">
-              <span className="material-icons-outlined">contact_mail</span>
-              Request Invite
-            </li>
-            {/* Add Groups */}
-            <li className="sidebar-list-item">
-              <span className="material-icons-outlined">add_circle</span>
-              Create Group
-            </li>
-            {/* Reports */}
-            <li className="sidebar-list-item">
-              <a href="reportIndex.html" title="View your Reports">
-                <span className="material-icons-outlined">poll</span> Reports
-              </a>
-            </li>
-          </ul>
-        </aside>
+        {/* ... */}
+        <ul className="sidebar-list">
+          {/* View Dashboard */}
+          <li className="sidebar-list-item">
+            <Link to="/Dashboard">
+              <span className="material-icons-outlined">dashboard</span>
+              Dashboard
+            </Link>
+          </li>
+          {/* View Groups */}
+          <li className="sidebar-list-item">
+            <span className="material-icons-outlined">groups</span>
+            <Link to="/Groups">Groups</Link>
+          </li>
+          {/* ... other sidebar items ... */}
+          {/* Reports */}
+          <li className="sidebar-list-item">
+            <Link to="/Reports" title="View your Reports">
+              <span className="material-icons-outlined">poll</span> Reports
+            </Link>
+          </li>
+        </ul>
+      </aside>
         {/* End Sidebar */}
         {/* Main */}
         <main className="main-container">
