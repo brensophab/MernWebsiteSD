@@ -50,21 +50,27 @@ const Groups = () => {
       <div className="grid-container">
         {/* Header */}
         <header className="header">
-        <div className="header-right">
-          <Link to="/error">
-            <span className="material-icons-outlined">notifications</span>
-          </Link>
-          <Link to="/error">
-            <span className="material-icons-outlined">email</span>
-          </Link>
-          <Link to="/error">
-            <span className="material-icons-outlined">account_circle</span>
-          </Link>
-          <Link to="/index" title="logout">
-            <span className="material-icons-outlined">logout</span>
-          </Link>
-        </div>
-      </header>
+          <div className="menu-icon">
+            {" "}
+            <span className="material-icons-outlined">menu</span>
+          </div>
+          <div className="header-left"></div>
+          <div className="header-right">
+            {/*error temporary*/}
+            {/* <Link to="/Error">
+              <span className="material-icons-outlined">notifications</span>
+            </Link>
+            <Link to="/Error">
+              <span className="material-icons-outlined">email</span>
+            </Link>
+            <Link to="/Error">
+              <span className="material-icons-outlined">account_circle</span>
+            </Link> */}
+            <button onClick={Logout} title="Logout of your account">
+              <span className="material-icons-outlined">logout</span>
+            </button>
+          </div>
+        </header>
         {/* End Header */}
 
         {/* Sidebar */}
@@ -104,34 +110,44 @@ const Groups = () => {
               <span className="material-icons-outlined">groups</span>
               <p>Number of Members: 5</p>
               <p>Date Created: Decemebr 10, 2023</p>
+              <div className='button-container'>
               <button className="invite-button">Invite Members</button>
               <button className="view-button">View Group</button>
               <button className="leave-button">Leave Group</button>
-              
+              </div>
             </div>
             <div className="card inner">
               <h3>Group 2</h3>
               <span className="material-icons-outlined">groups</span>
               <p>Number of Members: 6</p>
               <p>Date Created: January 6, 2024</p>
+              <div className='button-container'>
               <button className="invite-button">Invite Members</button>
+              <button className="view-button">View Group</button>
               <button className="leave-button">Leave Group</button>
+              </div>
             </div>
             <div className="card inner" > {/*onClick={viewGroups}*/}
               <h3>Group 3</h3>
               <span className="material-icons-outlined">groups</span>
               <p>Number of Members: 4</p>
               <p>Date Created: January 10, 2024</p>
+              <div className='button-container'>
               <button className="invite-button">Invite Members</button>
+              <button className="view-button">View Group</button>
               <button className="leave-button">Leave Group</button>
+              </div>
             </div>
             <div className="card inner">
               <h3>Group 4</h3>
               <span className="material-icons-outlined">groups</span>
               <p>Number of Members: 3</p>
               <p>Date Created: February 1, 2024</p>
+              <div className='button-container'>
               <button className="invite-button">Invite Members</button>
+              <button className="view-button">View Group</button>
               <button className="leave-button">Leave Group</button>
+              </div>
             </div>
           </div>
         </main>

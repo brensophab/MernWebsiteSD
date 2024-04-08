@@ -19,13 +19,15 @@ const Reports = () => {
     colors: ["#FF1654", "#247BA0"],
     series: [
       {
-        name: "Series A",
-        data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
+        name: "You",
+        data: [4.2, 2.5, 3.2, 5, 4.2, 5, 3.5, 5],
       },
+      
       {
-        name: "Series B",
+        name: "Others",
         data: [3, 3.2, 2.8, 4.5, 4.4, 4.4, 4.0, 4.6]
       }
+      
     ],
     stroke: {
       width: [4, 4]
@@ -37,6 +39,7 @@ const Reports = () => {
     },
     xaxis: {
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'], 
+      labels: { style: { colors: "#ffffff" } },
     },
     yaxis: [
       {
@@ -98,26 +101,21 @@ const Reports = () => {
     chart: { id: "basic-bar" },
     xaxis: {
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
+        "Member 1",
+        "Member 2",
+        "Member 3",
+        "Member 4"
       ],
       labels: { style: { colors: "#ffffff" } },
     },
     yaxis: { labels: { style: { colors: "#ffffff" } } }, // Add this line
     stroke: { colors: ["#ffffff"] },
-    series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
+    series: [{ name: "series-1", data: [4, 2, 5, 2] }],
   };
 
   const pieChartOptions = {
     series: [44, 55, 13, 43, 22],
-    labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+    labels: ["Rating of 1", "Rating of 2", "Rating of 3", "Rating of 4", "Rating of 5"],
     chart: { type: "donut" },
     plotOptions: {
       pie: {
@@ -153,7 +151,7 @@ const Reports = () => {
     },
     yaxis: { labels: { style: { colors: "#C0C0C0" } } }, // Add this line
     stroke: { colors: ["#C0C0C0"] },
-    series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
+    series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 100] }],
   };
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
@@ -264,7 +262,7 @@ const Reports = () => {
           <div className="content">
             <div className="charts-container">
               <div className="chart">
-                <h2>Your Average Rating History</h2>
+                <h2>Your Average Rating vs. Others</h2>
                 <Chart
                   options={multiLineChartOptions}
                   series={multiLineChartOptions.series}
@@ -291,7 +289,7 @@ const Reports = () => {
                 />
               </div>
               <div className="chart">
-                <h2>Your Average Rating History</h2>
+                <h2>Group's progress</h2>
                 <Chart
                   options={barChartOptions2}
                   series={barChartOptions2.series}
