@@ -13,6 +13,12 @@ const Dashboard = () => {
       <div className="grid-container">
         {/* Header */}
         <header className="header">
+        <div class="menu-icon" onclick="openSidebar()">
+      <span class="material-icons-outlined">menu</span>
+    </div>
+    <div class="header-left">
+      <span class="material-icons-outlined">search</span>
+    </div>
         <div className="header-right">
           <Link to="/error">
             <span className="material-icons-outlined">notifications</span>
@@ -32,12 +38,18 @@ const Dashboard = () => {
 
         {/* Sidebar */}
         <aside id="sidebar">
+        <div class="sidebar-title">
+      <div class="sidebar-brand">
+      <span class="material-icons-outlined">rate_review</span>Peer Review
+      </div>
+      <span class="material-icons-outlined">close</span>
+      </div>
         {/* ... */}
         <ul className="sidebar-list">
           {/* View Dashboard */}
-          <li className="sidebar-list-item">
-            <Link to="/Dashboard">
+          <li className="sidebar-list-item">         
               <span className="material-icons-outlined">dashboard</span>
+              <Link to="/Dashboard">
               Dashboard
             </Link>
           </li>
@@ -46,6 +58,7 @@ const Dashboard = () => {
             <span className="material-icons-outlined">groups</span>
             <Link to="/Groups">Groups</Link>
           </li>
+          
           {/* ... other sidebar items ... */}
           {/* Reports */}
           <li className="sidebar-list-item">
