@@ -1,6 +1,22 @@
 import React from 'react';
 import {Link } from 'react-router-dom';
+import Chart from "react-apexcharts";
 const Dashboard = () => {
+  const barChartOptions = {
+    chart: { id: "basic-bar" },
+    xaxis: {
+      categories: [
+        "Group 1",
+        "Group 2",
+        "Group 3",
+        "Group 4",
+        "Group 5",
+      ],labels: { style: { colors: '#ffffff' } }
+    },
+    yaxis: { labels: { style: { colors: '#ffffff' } } }, // Add this line
+    stroke: { colors: ['#ffffff'] },
+    series: [{ name: "series-1", data: [4, 3, 4, 5, 2] }],
+  };
   return (
     <>
       <meta charSet="utf-8" />
@@ -65,6 +81,7 @@ const Dashboard = () => {
             <Link to="/Reports" title="View your Reports">
               <span className="material-icons-outlined">poll</span> Reports
             </Link>
+            
           </li>
         </ul>
       </aside>
@@ -90,12 +107,19 @@ const Dashboard = () => {
             <div className="card inner">
               <h3>View Reports</h3>
               <span className="material-icons-outlined">analytics</span>
+              
             </div>
           </div>
           <div className="charts">
             <div className="charts-card">
-              <h2 className="chart-title">Peer Review Ratings</h2>
+              <h2 className="chart-title">Average Ratings</h2>
               <div id="area-chart" />
+              <Chart
+                  options={barChartOptions}
+                  series={barChartOptions.series}
+                  type="bar"
+                  width="100%"
+                />
             </div>
             <div className="charts-card">
               <h2 className="chart-title">Request Invite</h2>

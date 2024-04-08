@@ -1,7 +1,81 @@
-import React from 'react'; //{Component}
-import { Link } from 'react-router-dom';
-// import Chart from 'react-apexcharts';
+import { React, useState } from "react"; //{Component}
+
+import { Link } from "react-router-dom";
+import Chart from "react-apexcharts";
 const Reports = () => {
+  const lineChartOptions = {
+    chart: { id: "basic-line" },
+    xaxis: {
+      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+      labels: { style: { colors: '#ffffff' } } // Add this line
+    },
+    yaxis: { labels: { style: { colors: '#ffffff' } } }, // Add this line
+    stroke: { colors: ['#ffffff'] }, // Add this line
+    series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
+  };
+
+  const barChartOptions = {
+    chart: { id: "basic-bar" },
+    xaxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+      ],labels: { style: { colors: '#ffffff' } }
+    },
+    yaxis: { labels: { style: { colors: '#ffffff' } } }, // Add this line
+    stroke: { colors: ['#ffffff'] },
+    series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
+  };
+
+  const pieChartOptions = {
+    series: [44, 55, 13, 43, 22],
+    labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+    chart: { type: "donut" },
+    plotOptions: {
+        pie: {
+            dataLabels: {
+                style: {
+                    colors: ['#ffffff'] // White text color
+                }
+            }
+        }
+    }
+};
+
+  const barChartOptions2 = {
+    chart: { id: "basic-bar" },
+    xaxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+      ],labels: { style: { colors: '#ffffff' } }
+    },
+    yaxis: { labels: { style: { colors: '#ffffff' } } }, // Add this line
+    stroke: { colors: ['#ffffff'] },
+    series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
+  };
+
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const openSidebar = () => {
+    setSidebarOpen(true);
+  };
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
   return (
     <>
       <meta charSet="utf-8" />
@@ -17,11 +91,13 @@ const Reports = () => {
         href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
         rel="stylesheet"
       />
-      {/* Custom CSS */}
+
       <div className="grid-container">
         {/* Header */}
         <header className="header">
-          <div className="menu-icon"> {/*onclick = openSidebar*/ }
+          <div className="menu-icon" onClick={openSidebar}>
+            {" "}
+            {/* Now it's clickable */}
             <span className="material-icons-outlined">menu</span>
           </div>
           <div className="header-left">
@@ -45,19 +121,23 @@ const Reports = () => {
         </header>
         {/* End Header */}
         {/* Sidebar */}
-        <aside id="sidebar">
+        <aside
+          id="sidebar"
+          style={{ display: isSidebarOpen ? "block" : "none" }}
+        >
           <div className="sidebar-title">
             <div className="sidebar-brand">
               <span className="material-icons-outlined">chat</span> Peer Review
             </div>
-            <span className="material-icons-outlined" >{/*onClick={closeSidebar} */}
+            <span className="material-icons-outlined" onClick={closeSidebar}>
               close
             </span>
           </div>
           <ul className="sidebar-list">
             <li className="sidebar-list-item">
               <Link to="/Dashboard">
-                <span className="material-icons-outlined">dashboard</span> Dashboard
+                <span className="material-icons-outlined">dashboard</span>{" "}
+                Dashboard
               </Link>
             </li>
             <li className="sidebar-list-item">
@@ -67,12 +147,14 @@ const Reports = () => {
             </li>
             <li className="sidebar-list-item">
               <Link to="/Error" target="_blank">
-                <span className="material-icons-outlined">groups</span> Request Invite
+                <span className="material-icons-outlined">groups</span> Request
+                Invite
               </Link>
             </li>
             <li className="sidebar-list-item">
               <Link to="/Error" target="_blank">
-                <span className="material-icons-outlined">add_circle</span> Create Group
+                <span className="material-icons-outlined">add_circle</span>{" "}
+                Create Group
               </Link>
             </li>
             <li className="sidebar-list-item">
@@ -82,40 +164,56 @@ const Reports = () => {
             </li>
           </ul>
         </aside>
+
         {/* End Sidebar */}
         {/* Main */}
         <main className="main-container">
           <div className="main-title">
             <h2>Your Reports</h2>
           </div>
-          <div className="charts">
-            {/*commented charts are already populated*/}
-            <div className="charts-card">
-              <h2 className="chart-title">Current Ratings</h2>
-              <div id="radar-chart" />
-            </div>
-            <div className="charts-card">
-              <h2 className="chart-title">Your Peer's Average Performance </h2>{" "}
-              {/* Your Peer Ratings */}
-              <div id="bar-chart" />
-            </div>
-            <div className="charts-card">
-              <h2 className="chart-title">Team Member Ratings of You</h2>{" "}
-              {/* Team Member Ratings */}
-              <div id="hbar-chart" />
-            </div>
-            <div className="charts-card">
-              <h2 className="chart-title">Your Average Rating History</h2>
-              {/* Rating History*/}
-              <div id="area-chart" />
+          <div className="content">
+            <div className="charts-container">
+              <div className="chart">
+                <h2>Current Ratings</h2>
+                <Chart
+                  options={lineChartOptions}
+                  series={lineChartOptions.series}
+                  type="line"
+                  width="100%"
+                />
+              </div>
+              <div className="chart">
+                <h2>Your Peer's Average Performance</h2>
+                <Chart
+                  options={barChartOptions}
+                  series={barChartOptions.series}
+                  type="bar"
+                  width="100%"
+                />
+              </div>
+              <div className="chart">
+                <h2>Team Member Ratings of You</h2>
+                <Chart
+                  options={pieChartOptions}
+                  series={pieChartOptions.series}
+                  type="donut"
+                  width="100%"
+                />
+              </div>
+              <div className="chart">
+                <h2>Your Average Rating History</h2>
+                <Chart
+                  options={barChartOptions2}
+                  series={barChartOptions2.series}
+                  type="bar"
+                  width="100%"
+                />
+              </div>
             </div>
           </div>
         </main>
         {/* End Main */}
       </div>
-      {/* Scripts */}
-      {/* ApexCharts */}
-      {/* Custom JS */}
     </>
   );
 };

@@ -40,26 +40,26 @@ const Home = () => {
     removeCookie("token");
     navigate("/signup");
   };
+  const handleDashboardClick = () => { navigate("/dashboard"); };
 
   return (
     <div id="root">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Peer Review</title>
       <div className="grid-container">
-        <header className="header">
-          {isLoggedIn ? (
-            <button onClick={Logout}>LOGOUT</button>
-          ) : (
-            <>
-              <Link to="/login">
-                <button>Login</button>
-              </Link>
-              <Link to="/signup">
-                <button>Create an Account</button>
-              </Link>
-            </>
-          )}
-        </header>
+            <header className="header">
+        {isLoggedIn ? (
+          <>
+            <div className="left-buttons">
+              <button onClick={handleDashboardClick}>Dashboard</button>
+            </div>
+            <div className="right-buttons">
+              <button onClick={Logout}>LOGOUT</button>
+            </div>
+          </>
+        ) : (<></>
+            )}
+      </header>
         <main className="main-container">
           {isLoggedIn ? (
             <div className="home_page">

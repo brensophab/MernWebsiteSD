@@ -8,6 +8,7 @@ import Reports from "./pages/Reports.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Error from "./pages/Error.jsx";
 import ApexChartTest from "./pages/ApexChartTest.jsx";
+import Groups from "./pages/Groups.jsx"
 const App = () => {
   return (
     <Routes>
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/Apex" element={<ApexChartTest/>}/>
       <Route path="*" element={<Error/>}/>
+      <Route path="/groups" element={<Groups/>}/>
       {/* <Route path ="/ratings" element={<Ratings/>}/> */}
     </Routes>
   )

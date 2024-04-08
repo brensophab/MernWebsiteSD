@@ -19,7 +19,7 @@ const Groups = () => {
       <div className="grid-container">
         {/* Header */}
         <header className="header">
-          <div className="menu-icon" onClick={openSidebar}>
+          <div className="menu-icon" > {/*onClick={openSidebar}*/}
             <span className="material-icons-outlined">menu</span>
           </div>
           <div className="header-left">
@@ -49,7 +49,7 @@ const Groups = () => {
             <div className="sidebar-brand">
               <span className="material-icons-outlined">rate_review</span>Peer Review
             </div>
-            <span className="material-icons-outlined" onClick={closeSidebar}>
+            <span className="material-icons-outlined" > {/*onClick={closeSidebar}*/}
               close
             </span>
           </div>
@@ -68,17 +68,7 @@ const Groups = () => {
                 Groups
               </a>
             </li>
-            {/* Request Invite */}
-            <li className="sidebar-list-item">
-              <span className="material-icons-outlined">contact_mail</span>
-              <a href="error.html" />
-              Request Invite
-            </li>
-            {/* Add Groups */}
-            <li className="sidebar-list-item">
-              <span className="material-icons-outlined">add_circle</span>
-              Create Group
-            </li>
+            
             {/* Reports */}
             <li className="sidebar-list-item">
               <a href="reportIndex.html" title="View your Reports">
@@ -110,7 +100,7 @@ const Groups = () => {
               <button className="invite-button">Invite Members</button>
               <button className="leave-button">Leave Group</button>
             </div>
-            <div className="card inner" onClick={viewGroups}>
+            <div className="card inner" > {/*onClick={viewGroups}*/}
               <h3>Group 3</h3>
               <span className="material-icons-outlined">groups</span>
               <p>Number of Members: 4</p>
@@ -133,7 +123,7 @@ const Groups = () => {
       {/* Popup for inviting members */}
       <div id="invitePopup" className="popup">
         <div className="popup-content">
-          <span className="close" onClick={closePopup}>
+          <span className="close" > {/*onClick={closePopup}*/}
             ×
           </span>
           {/* Invite members form goes here */}
@@ -148,7 +138,7 @@ const Groups = () => {
       {/* Popup for leaving group */}
       <div id="leavePopup" className="popup">
         <div className="popup-content">
-          <span className="close" onClick={closeLeavePopup}>
+          <span className="close" > {/*onClick={closeLeavePopup}*/}
             ×
           </span>
           <h3>Leave Group</h3>
