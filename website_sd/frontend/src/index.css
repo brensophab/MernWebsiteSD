@@ -30,10 +30,12 @@ button {
   }
   
   .header {
-    grid-area: header;
-    height: 100px;
-    background-color: #1d2634;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
   }
+  
   
   h1, h3 {
     color: rgba(178, 236, 255, 0.95);
@@ -102,5 +104,27 @@ button {
   
   a:hover {
     text-decoration: underline;
+  }
+  .charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Use minmax for flexible sizing */
+    gap: 20px; /* Adjust gap as needed */
+    justify-content: start; /* Aligns the grid to the start of the container */
+    align-items: start; /* Aligns grid items to the start along the column */
+  }
+  
+  .chart {
+    /* Set a max-width that's appropriate for your design, or remove it to fill the grid */
+    /* If you remove max-width, you may also remove the next line */
+    margin: 0; /* This removes the auto margin, aligning charts to the grid's edges */
+    width: 500px;
+    height: 450px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .charts-container {
+      grid-template-columns: 1fr; /* Stack the charts on smaller screens */
+    }
   }
   
