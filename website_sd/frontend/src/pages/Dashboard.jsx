@@ -1,7 +1,44 @@
 import React from 'react';
 import {Link } from 'react-router-dom';
 import Chart from "react-apexcharts";
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const [cookies, removeCookie] = useCookies([]);
+  const [username, setUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+      } else {
+        setIsLoggedIn(true);
+        const { data } = await axios.post(
+          "http://localhost:4000/",
+          {},
+          { withCredentials: true }
+        );
+        const { status, user } = data;
+        setUsername(user);
+        return status
+          ? toast(`Hello ${user}`, {
+              position: "top-right",
+            })
+          : (removeCookie("token"), navigate("/login"));
+      }
+    };
+    verifyCookie();
+  }, [cookies, navigate, removeCookie]);
+
+  const Logout = () => {
+    removeCookie("token");
+    navigate("/signup");
+  };
   const barChartOptions = {
     chart: { id: "basic-bar" },
     xaxis: {
@@ -29,27 +66,17 @@ const Dashboard = () => {
       <div className="grid-container">
         {/* Header */}
         <header className="header">
-        <div class="menu-icon" onclick="openSidebar()">
-      <span class="material-icons-outlined">menu</span>
-    </div>
-    <div class="header-left">
-      <span class="material-icons-outlined">search</span>
-    </div>
-        <div className="header-right">
-          <Link to="/error">
-            <span className="material-icons-outlined">notifications</span>
-          </Link>
-          <Link to="/error">
-            <span className="material-icons-outlined">email</span>
-          </Link>
-          <Link to="/error">
-            <span className="material-icons-outlined">account_circle</span>
-          </Link>
-          <Link to="/index" title="logout">
-            <span className="material-icons-outlined">logout</span>
-          </Link>
-        </div>
-      </header>
+          <div className="menu-icon">
+            {" "}
+            <span className="material-icons-outlined">menu</span>
+          </div>
+          <div className="header-left"></div>
+          <div className="header-right">
+            <button onClick={Logout} title="Logout of your account">
+              <span className="material-icons-outlined">logout</span>
+            </button>
+          </div>
+        </header>
         {/* End Header */}
 
         {/* Sidebar */}
@@ -89,7 +116,7 @@ const Dashboard = () => {
         {/* Main */}
         <main className="main-container">
           <div className="main-title">
-            <h2>Dashboard</h2>
+            <h2>{username}'s Dashboard</h2>
           </div>
           <div className="main-cards">
             <div className="card inner">
