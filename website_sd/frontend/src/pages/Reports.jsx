@@ -7,25 +7,91 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Chart from "react-apexcharts";
 const Reports = () => {
-  const lineChartOptions = {
-    chart: { id: "basic-line" },
-    xaxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-      ],
-      labels: { style: { colors: "#ffffff" } }, // Add this line
+  const multiLineChartOptions = {
+    chart: {
+      height: 350,
+      type: "line",
+      stacked: false
     },
-    yaxis: { labels: { style: { colors: "#ffffff" } } }, // Add this line
-    stroke: { colors: ["#ffffff"] }, // Add this line
-    series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
+    dataLabels: {
+      enabled: false
+    },
+    colors: ["#FF1654", "#247BA0"],
+    series: [
+      {
+        name: "Series A",
+        data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
+      },
+      {
+        name: "Series B",
+        data: [3, 3.2, 2.8, 4.5, 4.4, 4.4, 4.0, 4.6]
+      }
+    ],
+    stroke: {
+      width: [4, 4]
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "20%"
+      }
+    },
+    xaxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'], 
+    },
+    yaxis: [
+      {
+        axisTicks: {
+          show: true
+        },
+        axisBorder: {
+          show: true,
+          color: "#FF1654"
+        },
+        labels: {
+          style: {
+            colors: "#FF1654"
+          }
+        },
+        title: {
+          text: "Your Rating",
+          style: {
+            color: "#FF1654"
+          }
+        }
+      },
+      {
+        opposite: true,
+        axisTicks: {
+          show: true
+        },
+        axisBorder: {
+          show: true,
+          color: "#247BA0"
+        },
+        labels: {
+          style: {
+            colors: "#247BA0"
+          }
+        },
+        title: {
+          text: "Average Rating of Peers",
+          style: {
+            color: "#247BA0"
+          }
+        }
+      }
+    ],
+    tooltip: {
+      shared: false,
+      intersect: true,
+      x: {
+        show: false
+      }
+    },
+    legend: {
+      horizontalAlign: "left",
+      offsetX: 40
+    }
   };
 
   const barChartOptions = {
@@ -66,6 +132,11 @@ const Reports = () => {
 
   const barChartOptions2 = {
     chart: { id: "basic-bar" },
+    plotOptions: {
+      bar: {
+        horizontal: true
+      }
+    },
     xaxis: {
       categories: [
         "Jan",
@@ -78,10 +149,10 @@ const Reports = () => {
         "Aug",
         "Sep",
       ],
-      labels: { style: { colors: "#ffffff" } },
+      labels: { style: { colors: "#C0C0C0" } },
     },
-    yaxis: { labels: { style: { colors: "#ffffff" } } }, // Add this line
-    stroke: { colors: ["#ffffff"] },
+    yaxis: { labels: { style: { colors: "#C0C0C0" } } }, // Add this line
+    stroke: { colors: ["#C0C0C0"] },
     series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
   };
   const navigate = useNavigate();
@@ -120,7 +191,7 @@ const Reports = () => {
     <>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-      <title>Peer Review Dashboard</title>
+      
       <title>Your Reports</title>
       {/* Montserrat Font */}
       <link
@@ -138,11 +209,9 @@ const Reports = () => {
         <header className="header">
           <div className="menu-icon">
             {" "}
-            {/* Now it's clickable */}
             <span className="material-icons-outlined">menu</span>
           </div>
-          <div className="header-left">
-          </div>
+          <div className="header-left"></div>
           <div className="header-right">
             {/*error temporary*/}
             {/* <Link to="/Error">
@@ -155,8 +224,8 @@ const Reports = () => {
               <span className="material-icons-outlined">account_circle</span>
             </Link> */}
             <button onClick={Logout} title="Logout of your account">
-  <span className="material-icons-outlined">logout</span>
-</button>
+              <span className="material-icons-outlined">logout</span>
+            </button>
           </div>
         </header>
         {/* End Header */}
@@ -190,15 +259,15 @@ const Reports = () => {
         {/* Main */}
         <main className="main-container">
           <div className="main-title">
-            <h2>Your Reports</h2>
+            <h2>{username}'s Reports</h2>
           </div>
           <div className="content">
             <div className="charts-container">
               <div className="chart">
-                <h2>Current Ratings</h2>
+                <h2>Your Average Rating History</h2>
                 <Chart
-                  options={lineChartOptions}
-                  series={lineChartOptions.series}
+                  options={multiLineChartOptions}
+                  series={multiLineChartOptions.series}
                   type="line"
                   width="100%"
                 />
