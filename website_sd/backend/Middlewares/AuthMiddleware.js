@@ -20,7 +20,7 @@ module.exports.userVerification = (req, res, next) => {
             const user = await User.findById(decodedToken.id);
             if (user) {
                 req.user = user; // Attach the entire user object to req
-                // res.json({ status: true, user: user.username });
+                res.json({ status: true, user: user.username });
                 // console.log(req.user);
                 next(); // Pass control to the next handler
             } else {

@@ -1,16 +1,30 @@
-import { React, useState } from "react"; //{Component}
-
+import { React } from "react"; //{Component}
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Chart from "react-apexcharts";
 const Reports = () => {
   const lineChartOptions = {
     chart: { id: "basic-line" },
     xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
-      labels: { style: { colors: '#ffffff' } } // Add this line
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+      ],
+      labels: { style: { colors: "#ffffff" } }, // Add this line
     },
-    yaxis: { labels: { style: { colors: '#ffffff' } } }, // Add this line
-    stroke: { colors: ['#ffffff'] }, // Add this line
+    yaxis: { labels: { style: { colors: "#ffffff" } } }, // Add this line
+    stroke: { colors: ["#ffffff"] }, // Add this line
     series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
   };
 
@@ -27,10 +41,11 @@ const Reports = () => {
         "Jul",
         "Aug",
         "Sep",
-      ],labels: { style: { colors: '#ffffff' } }
+      ],
+      labels: { style: { colors: "#ffffff" } },
     },
-    yaxis: { labels: { style: { colors: '#ffffff' } } }, // Add this line
-    stroke: { colors: ['#ffffff'] },
+    yaxis: { labels: { style: { colors: "#ffffff" } } }, // Add this line
+    stroke: { colors: ["#ffffff"] },
     series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
   };
 
@@ -39,15 +54,15 @@ const Reports = () => {
     labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
     chart: { type: "donut" },
     plotOptions: {
-        pie: {
-            dataLabels: {
-                style: {
-                    colors: ['#ffffff'] // White text color
-                }
-            }
-        }
-    }
-};
+      pie: {
+        dataLabels: {
+          style: {
+            colors: ["#ffffff"], // White text color
+          },
+        },
+      },
+    },
+  };
 
   const barChartOptions2 = {
     chart: { id: "basic-bar" },
@@ -62,24 +77,50 @@ const Reports = () => {
         "Jul",
         "Aug",
         "Sep",
-      ],labels: { style: { colors: '#ffffff' } }
+      ],
+      labels: { style: { colors: "#ffffff" } },
     },
-    yaxis: { labels: { style: { colors: '#ffffff' } } }, // Add this line
-    stroke: { colors: ['#ffffff'] },
+    yaxis: { labels: { style: { colors: "#ffffff" } } }, // Add this line
+    stroke: { colors: ["#ffffff"] },
     series: [{ name: "series-1", data: [30, 40, 45, 50, 49, 60, 70, 91, 125] }],
   };
+  const navigate = useNavigate();
+  const [cookies, removeCookie] = useCookies([]);
+  const [username, setUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const openSidebar = () => {
-    setSidebarOpen(true);
-  };
-  const closeSidebar = () => {
-    setSidebarOpen(false);
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+      } else {
+        setIsLoggedIn(true);
+        const { data } = await axios.post(
+          "http://localhost:4000/",
+          {},
+          { withCredentials: true }
+        );
+        const { status, user } = data;
+        setUsername(user);
+        return status
+          ? toast(`Hello ${user}`, {
+              position: "top-right",
+            })
+          : (removeCookie("token"), navigate("/login"));
+      }
+    };
+    verifyCookie();
+  }, [cookies, navigate, removeCookie]);
+
+  const Logout = () => {
+    removeCookie("token");
+    navigate("/signup");
   };
   return (
     <>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <title>Peer Review Dashboard</title>
       <title>Your Reports</title>
       {/* Montserrat Font */}
       <link
@@ -95,17 +136,16 @@ const Reports = () => {
       <div className="grid-container">
         {/* Header */}
         <header className="header">
-          <div className="menu-icon" onClick={openSidebar}>
+          <div className="menu-icon">
             {" "}
             {/* Now it's clickable */}
             <span className="material-icons-outlined">menu</span>
           </div>
           <div className="header-left">
-            <span className="material-icons-outlined">search</span>
           </div>
           <div className="header-right">
             {/*error temporary*/}
-            <Link to="/Error">
+            {/* <Link to="/Error">
               <span className="material-icons-outlined">notifications</span>
             </Link>
             <Link to="/Error">
@@ -113,54 +153,35 @@ const Reports = () => {
             </Link>
             <Link to="/Error">
               <span className="material-icons-outlined">account_circle</span>
-            </Link>
-            <Link to="index.html" title="logout">
-              <span className="material-icons-outlined">logout</span>
-            </Link>
+            </Link> */}
+            <button onClick={Logout} title="Logout of your account">
+  <span className="material-icons-outlined">logout</span>
+</button>
           </div>
         </header>
         {/* End Header */}
         {/* Sidebar */}
-        <aside
-          id="sidebar"
-          style={{ display: isSidebarOpen ? "block" : "none" }}
-        >
-          <div className="sidebar-title">
-            <div className="sidebar-brand">
-              <span className="material-icons-outlined">chat</span> Peer Review
+        <aside id="sidebar">
+          <div class="sidebar-title">
+            <div class="sidebar-brand">
+              <span class="material-icons-outlined">rate_review</span>Peer
+              Review
             </div>
-            <span className="material-icons-outlined" onClick={closeSidebar}>
-              close
-            </span>
+            <span class="material-icons-outlined">close</span>
           </div>
-          <ul className="sidebar-list">
-            <li className="sidebar-list-item">
-              <Link to="/Dashboard">
-                <span className="material-icons-outlined">dashboard</span>{" "}
-                Dashboard
-              </Link>
+          <ul class="sidebar-list">
+            <li class="sidebar-list-item">
+              <span class="material-icons-outlined">dashboard</span>
+              <a href="/Dashboard">Dashboard</a>
             </li>
-            <li className="sidebar-list-item">
-              <Link to="/Groups" target="_blank">
-                <span className="material-icons-outlined">category</span> Groups
-              </Link>
+            <li class="sidebar-list-item">
+              <span class="material-icons-outlined">groups</span>
+              <a href="/Groups">Groups</a>
             </li>
-            <li className="sidebar-list-item">
-              <Link to="/Error" target="_blank">
-                <span className="material-icons-outlined">groups</span> Request
-                Invite
-              </Link>
-            </li>
-            <li className="sidebar-list-item">
-              <Link to="/Error" target="_blank">
-                <span className="material-icons-outlined">add_circle</span>{" "}
-                Create Group
-              </Link>
-            </li>
-            <li className="sidebar-list-item">
-              <Link to="/Reports" title="View your Reports">
-                <span className="material-icons-outlined">poll</span> Reports
-              </Link>
+            <li class="sidebar-list-item">
+              <a title="View your Reports" href="/Reports">
+                <span class="material-icons-outlined">poll</span> Reports
+              </a>
             </li>
           </ul>
         </aside>

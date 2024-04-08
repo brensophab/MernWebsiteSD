@@ -1,78 +1,93 @@
 import React from 'react';
-
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const Groups = () => {
+  const navigate = useNavigate();
+  const [cookies, removeCookie] = useCookies([]);
+  const [username, setUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+      } else {
+        setIsLoggedIn(true);
+        const { data } = await axios.post(
+          "http://localhost:4000/",
+          {},
+          { withCredentials: true }
+        );
+        const { status, user } = data;
+        setUsername(user);
+        return status
+          ? toast(`Hello ${user}`, {
+              position: "top-right",
+            })
+          : (removeCookie("token"), navigate("/login"));
+      }
+    };
+    verifyCookie();
+  }, [cookies, navigate, removeCookie]);
+
+  const Logout = () => {
+    removeCookie("token");
+    navigate("/signup");
+  };
   return (
     <>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>View Groups - Peer Review Dashboard</title>
-      {/* Include necessary stylesheets */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" href="css/dashboardStyles.css" />
+      <title>Peer Review Dashboard</title>
+      {/* Montserrat Font */}
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+      {/* Material Icons */}
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
       <div className="grid-container">
         {/* Header */}
         <header className="header">
-          <div className="menu-icon" > {/*onClick={openSidebar}*/}
-            <span className="material-icons-outlined">menu</span>
-          </div>
-          <div className="header-left">
-            <span className="material-icons-outlined">search</span>
-          </div>
-          <div className="header-right">
-            {/* error temporary */}
-            <a href="error.html">
-              <span className="material-icons-outlined">notifications</span>
-            </a>
-            <a href="error.html">
-              <span className="material-icons-outlined">email</span>
-            </a>
-            <a href="error.html">
-              <span className="material-icons-outlined">account_circle</span>
-            </a>
-            <a href="index.html" title="logout">
-              <span className="material-icons-outlined">logout</span>
-            </a>
-          </div>
-        </header>
+        <div className="header-right">
+          <Link to="/error">
+            <span className="material-icons-outlined">notifications</span>
+          </Link>
+          <Link to="/error">
+            <span className="material-icons-outlined">email</span>
+          </Link>
+          <Link to="/error">
+            <span className="material-icons-outlined">account_circle</span>
+          </Link>
+          <Link to="/index" title="logout">
+            <span className="material-icons-outlined">logout</span>
+          </Link>
+        </div>
+      </header>
         {/* End Header */}
+
         {/* Sidebar */}
         <aside id="sidebar">
-          {/* Include the same sidebar content from the dashboard */}
-          <div className="sidebar-title">
-            <div className="sidebar-brand">
-              <span className="material-icons-outlined">rate_review</span>Peer Review
+          <div class="sidebar-title">
+            <div class="sidebar-brand">
+              <span class="material-icons-outlined">rate_review</span>Peer
+              Review
             </div>
-            <span className="material-icons-outlined" > {/*onClick={closeSidebar}*/}
-              close
-            </span>
+            <span class="material-icons-outlined">close</span>
           </div>
-          <ul className="sidebar-list">
-            {/* Include the same sidebar items as in the dashboard */}
-            {/* View Dashboard */}
-            <li className="sidebar-list-item">
-              <span className="material-icons-outlined">dashboard</span>
-              <a href="dashboardIndex.html">Dashboard</a>
+          <ul class="sidebar-list">
+            <li class="sidebar-list-item">
+              <span class="material-icons-outlined">dashboard</span>
+              <a href="/Dashboard">Dashboard</a>
             </li>
-            {/* View Groups */}
-            <li className="sidebar-list-item">
-              <a href="groups.html">
-                {/* Updated link to groups.html */}
-                <span className="material-icons-outlined">groups</span>
-                Groups
-              </a>
+            <li class="sidebar-list-item">
+              <span class="material-icons-outlined">groups</span>
+              <a href="/Groups">Groups</a>
             </li>
-            
-            {/* Reports */}
-            <li className="sidebar-list-item">
-              <a href="reportIndex.html" title="View your Reports">
-                <span className="material-icons-outlined">poll</span> Reports
+            <li class="sidebar-list-item">
+              <a title="View your Reports" href="/Reports">
+                <span class="material-icons-outlined">poll</span> Reports
               </a>
             </li>
           </ul>
@@ -90,7 +105,9 @@ const Groups = () => {
               <p>Number of Members: 5</p>
               <p>Date Created: Decemebr 10, 2023</p>
               <button className="invite-button">Invite Members</button>
+              <button className="view-button">View Group</button>
               <button className="leave-button">Leave Group</button>
+              
             </div>
             <div className="card inner">
               <h3>Group 2</h3>
