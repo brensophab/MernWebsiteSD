@@ -108,8 +108,15 @@ const Dashboard = () => {
             <Link to="/Reports" title="View your Reports">
               <span className="material-icons-outlined">poll</span> Reports
             </Link>
-            
           </li>
+
+          {/* Survey */}
+          <li className="sidebar-list-item">
+            <Link to="/Survey" title="Rate your Peers">
+              <span className="material-icons-outlined">poll</span> Survey
+            </Link>
+          </li>
+
         </ul>
       </aside>
         {/* End Sidebar */}
