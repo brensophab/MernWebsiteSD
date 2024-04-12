@@ -14,7 +14,7 @@ const Survey = () => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Survey</title>
       <ul>{groupMembers.map(member => (
-        <div class="container2">
+        <div class="form_container">
         <label>
           <big>How did {member} perfrom? </big>
         </label>
