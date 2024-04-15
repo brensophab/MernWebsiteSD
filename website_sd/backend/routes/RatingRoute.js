@@ -1,3 +1,5 @@
+
+//routes for ratings 
 const router = require("express").Router();
 const { createRating, getRatingsForUser, updateRating, deleteRating } = require('../Controllers/RatingController');
 const { userVerification } = require("../Middlewares/AuthMiddleware");

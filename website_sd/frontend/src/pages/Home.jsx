@@ -38,7 +38,7 @@ const Home = () => {
 
   const Logout = () => {
     removeCookie("token");
-    navigate("/signup");
+    navigate("/login");
   };
   const handleDashboardClick = () => { navigate("/dashboard"); };
 

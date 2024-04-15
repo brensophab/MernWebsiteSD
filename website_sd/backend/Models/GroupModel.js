@@ -17,7 +17,9 @@ const groupSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    description: String
+    
 });
 
 const Group = mongoose.model('Group', groupSchema);

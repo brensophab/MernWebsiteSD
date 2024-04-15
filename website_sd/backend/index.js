@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
-const authRoute = require("./routes/AuthRoute");
+const authRoute = require("./Routes/AuthRoute");
 const ratingRoute = require("./Routes/RatingRoute");
+const groupRoute = require("./Routes/GroupRoute");
 // const ratingRoute = require("./Routes/RatingRoute");
 const { MONGO_URL, PORT } = process.env;
 // console.log(this.jwtService);
@@ -35,3 +36,4 @@ app.use(express.json());
 
 app.use("/", authRoute);
 app.use("/ratings", ratingRoute);
+app.use("/groups", groupRoute);

@@ -26,10 +26,10 @@ module.exports.createRating = async (req, res) => {
             comment
         });
 
-        res.status(201).json({ message: "Rating created successfully!", success: true, rating });
+       return res.status(201).json({ message: "Rating created successfully!", success: true, rating });
     } catch (error) {
         
-        res.status(500).json({ message: error.message });
+      return  res.status(500).json({ message: error.message });
     }
 };
 

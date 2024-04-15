@@ -22,7 +22,6 @@ const App = () => {
       <Route path="*" element={<Error/>}/>
       <Route path="/groups" element={<Groups/>}/>
       <Route path="/survey" element={<Survey/>}/>
-      {/* <Route path ="/ratings" element={<Ratings/>}/> */}
     </Routes>
   )
 }
