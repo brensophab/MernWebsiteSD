@@ -61,7 +61,7 @@ const Survey = () => {
         </div>
         ))}
       </ul>
-      <Link to="/Home">
+      <Link to="/Reports">
         <button>Submit</button>
       </Link>
     </>

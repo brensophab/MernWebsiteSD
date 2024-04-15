@@ -238,10 +238,6 @@ const Reports = () => {
           </div>
           <ul class="sidebar-list">
             <li class="sidebar-list-item">
-              <span class="material-icons-outlined">dashboard</span>
-              <a href="/Dashboard">Dashboard</a>
-            </li>
-            <li class="sidebar-list-item">
               <span class="material-icons-outlined">groups</span>
               <a href="/Groups">Groups</a>
             </li>
@@ -250,6 +246,12 @@ const Reports = () => {
                 <span class="material-icons-outlined">poll</span> Reports
               </a>
             </li>
+            {/* Survey */}
+          <li className="sidebar-list-item">
+            <Link to="/Survey" title="Rate your Peers">
+              <span className="material-icons-outlined">poll</span> Survey
+            </Link>
+          </li>
           </ul>
         </aside>
 

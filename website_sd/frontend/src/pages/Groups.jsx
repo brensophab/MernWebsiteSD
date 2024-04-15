@@ -91,11 +91,10 @@ const Groups = () => {
               <span class="material-icons-outlined">groups</span>
               <a href="/Groups">Groups</a>
             </li>
-            <li class="sidebar-list-item">
-              <a title="View your Reports" href="/Reports">
-                <span class="material-icons-outlined">poll</span> Reports
-              </a>
-            </li>
+
+
+ 
+          
           </ul>
         </aside>
         {/* End Sidebar */}
@@ -112,7 +111,9 @@ const Groups = () => {
               <p>Date Created: Decemebr 10, 2023</p>
               <div className='button-container'>
               <button className="invite-button">Invite Members</button>
+              <Link to="/Reports" title="Rate your Peers">
               <button className="view-button">View Group</button>
+              </Link>
               <button className="leave-button">Leave Group</button>
               </div>
             </div>
@@ -123,7 +124,9 @@ const Groups = () => {
               <p>Date Created: January 6, 2024</p>
               <div className='button-container'>
               <button className="invite-button">Invite Members</button>
+              <Link to="/Reports" title="Rate your Peers">
               <button className="view-button">View Group</button>
+              </Link>
               <button className="leave-button">Leave Group</button>
               </div>
             </div>
@@ -134,7 +137,9 @@ const Groups = () => {
               <p>Date Created: January 10, 2024</p>
               <div className='button-container'>
               <button className="invite-button">Invite Members</button>
+              <Link to="/Reports" title="Rate your Peers">
               <button className="view-button">View Group</button>
+              </Link>
               <button className="leave-button">Leave Group</button>
               </div>
             </div>
@@ -145,7 +150,9 @@ const Groups = () => {
               <p>Date Created: February 1, 2024</p>
               <div className='button-container'>
               <button className="invite-button">Invite Members</button>
+              <Link to="/Reports" title="Rate your Peers">
               <button className="view-button">View Group</button>
+              </Link>
               <button className="leave-button">Leave Group</button>
               </div>
             </div>
