@@ -10,6 +10,7 @@ const Survey = () => {
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Survey</title>
+      
       <div className="survey-list">
         {groupMembers.map(member => (
           <div key={member} className="survey-item">
@@ -29,7 +30,7 @@ const Survey = () => {
             </div>
           </div>
         ))}
-      </ul>
+      </div>
       <Link to="/Reports">
         <button>Submit</button>
       </Link>
