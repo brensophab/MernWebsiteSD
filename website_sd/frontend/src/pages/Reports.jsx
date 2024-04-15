@@ -240,10 +240,6 @@ const Reports = () => {
           </div>
           <ul class="sidebar-list">
             <li class="sidebar-list-item">
-              <span class="material-icons-outlined">dashboard</span>
-              <a href="/Dashboard">Dashboard</a>
-            </li>
-            <li class="sidebar-list-item">
               <span class="material-icons-outlined">groups</span>
               <a href="/Groups">Groups</a>
             </li>

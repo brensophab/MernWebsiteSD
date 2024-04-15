@@ -103,20 +103,7 @@ const Dashboard = () => {
             <Link to="/Groups">Groups</Link>
           </li>
           
-          {/* ... other sidebar items ... */}
-          {/* Reports */}
-          <li className="sidebar-list-item">
-            <Link to="/Reports" title="View your Reports">
-              <span className="material-icons-outlined">poll</span> Reports
-            </Link>
-          </li>
-
-          {/* Survey */}
-          <li className="sidebar-list-item">
-            <Link to="/Survey" title="Rate your Peers">
-              <span className="material-symbols-outlined">ballot</span> Survey
-            </Link>
-          </li>
+         
 
         </ul>
       </aside>
@@ -139,11 +126,7 @@ const Dashboard = () => {
               <h3>View Groups</h3>
               <span className="material-icons-outlined">groups</span>
             </div>
-            <div className="card inner">
-              <h3>View Reports</h3>
-              <span className="material-icons-outlined">analytics</span>
-              
-            </div>
+            
           </div>
           <div className="charts">
             <div className="charts-card">
