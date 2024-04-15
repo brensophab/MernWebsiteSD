@@ -47,6 +47,8 @@ const Groups = () => {
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
       {/* Material Icons */}
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
       <div className="grid-container">
         {/* Header */}
         <header className="header">
@@ -56,16 +58,7 @@ const Groups = () => {
           </div>
           <div className="header-left"></div>
           <div className="header-right">
-            {/*error temporary*/}
-            {/* <Link to="/Error">
-              <span className="material-icons-outlined">notifications</span>
-            </Link>
-            <Link to="/Error">
-              <span className="material-icons-outlined">email</span>
-            </Link>
-            <Link to="/Error">
-              <span className="material-icons-outlined">account_circle</span>
-            </Link> */}
+            
             <button onClick={Logout} title="Logout of your account">
               <span className="material-icons-outlined">logout</span>
             </button>
@@ -96,6 +89,11 @@ const Groups = () => {
                 <span class="material-icons-outlined">poll</span> Reports
               </a>
             </li>
+            <li className="sidebar-list-item">
+            <Link to="/Survey" title="Rate your Peers">
+              <span className="material-symbols-outlined">ballot</span> Survey
+            </Link>
+          </li>
           </ul>
         </aside>
         {/* End Sidebar */}

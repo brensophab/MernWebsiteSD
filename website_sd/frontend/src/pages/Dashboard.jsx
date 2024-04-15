@@ -63,6 +63,7 @@ const Dashboard = () => {
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
       {/* Material Icons */}
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       <div className="grid-container">
         {/* Header */}
         <header className="header">
@@ -113,7 +114,7 @@ const Dashboard = () => {
           {/* Survey */}
           <li className="sidebar-list-item">
             <Link to="/Survey" title="Rate your Peers">
-              <span className="material-icons-outlined">poll</span> Survey
+              <span className="material-symbols-outlined">ballot</span> Survey
             </Link>
           </li>
 
