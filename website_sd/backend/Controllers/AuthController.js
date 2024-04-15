@@ -1,4 +1,5 @@
 const User = require("../Models/UserModel");
+const Group = require("../Models/GroupModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 /*the user's inputs are obtained from the req.body 
@@ -76,3 +77,21 @@ module.exports.Login = async (req, res, next) => {
     console.error(error);
   }
 }
+
+//Start of create group backend functionality
+module.exports.CreateGroup = async (req, res, next) => {
+  try {
+    const { name, owner, members, createdAt } = req.body;
+    const existingGroup = await Group.findOne({ name });
+    if (existingUser) {
+      return res.json({ message: "Group already exists" });
+    }
+    const group = await Group.create({ name, owner, members, createdAt });
+    res
+      .status(201)
+      .json({ message: "Group created successfully", success: true, group });
+    next();
+  } catch (error) {
+    console.error(error);
+  }
+};
