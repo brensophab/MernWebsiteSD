@@ -3,77 +3,47 @@ const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 /*the user's inputs are obtained from the req.body 
 in the code below, and you then check the email to make sure no past registrations have been made. 
-We'll use the values obtained from req.body to create the new user after that has occurred. */
-module.exports.Signup = async (req, res, next) => {
+We use the values obtained from req.body to create the new user after that has occurred. */
+module.exports.Signup = async (req, res) => {
   try {
     const { email, password, username, createdAt } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.json({ message: "User already exists" });
+      return res.status(400).json({ message: "User already exists" });
     }
     const user = await User.create({ email, password, username, createdAt });
-    //secretOrPrivateKey is the secret key that will be used to sign the JWT and must have a value  
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
     });
-    res
-      .status(201)
-      .json({ message: "User signed in successfully", success: true, user });
-    next();
+    res.status(201).json({ message: "User signed in successfully", success: true, user });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
-// Importing necessary modules and dependencies
-module.exports.Login = async (req, res, next) => {
+
+module.exports.Login = async (req, res) => {
   try {
-    // Extracting email and password from request body
     const { email, password } = req.body;
-
-    // Checking if email or password is missing
     if (!email || !password) {
-      // Returning response with message if any field is missing
-      return res.json({ message: 'All fields are required' });
+      return res.status(400).json({ message: 'All fields are required' });
     }
-
-    // Finding user by email in the database
     const user = await User.findOne({ email });
-
-    // Checking if user exists
-    if (!user) {
-      // Returning response with message if user does not exist
-      return res.json({ message: 'Incorrect password or email' });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(400).json({ message: 'Incorrect password or email' });
     }
-
-    // Comparing provided password with user's password in the database
-    const auth = await bcrypt.compare(password, user.password);
-
-    // Checking if password is incorrect
-    if (!auth) {
-      // Returning response with message if password is incorrect
-      return res.json({ message: 'Incorrect password or email' });
-    }
-
-    // Creating a token for user authentication
     const token = createSecretToken(user._id);
-
-    // Setting the token as a cookie in the response
     res.cookie("token", token, {
-      withCredentials: true, // Sending credentials with the cookie
-      httpOnly: false, // Allowing client-side JavaScript to access the cookie
+      withCredentials: true,
+      httpOnly: false,
     });
-
-    // Returning success response with message after successful login
-    res.status(201).json({ message: "User logged in successfully", success: true, user: user.username });
-    
-
-    // Calling next middleware function
-    next();
+    res.status(200).json({ message: "User logged in successfully", success: true, user });
   } catch (error) {
-    // Handling any errors that occur during the login process
     console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
 

@@ -63,7 +63,6 @@ const Dashboard = () => {
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
       {/* Material Icons */}
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       <div className="grid-container">
         {/* Header */}
         <header className="header">
@@ -103,8 +102,14 @@ const Dashboard = () => {
             <Link to="/Groups">Groups</Link>
           </li>
           
-         
-
+          {/* ... other sidebar items ... */}
+          {/* Reports */}
+          <li className="sidebar-list-item">
+            <Link to="/Reports" title="View your Reports">
+              <span className="material-icons-outlined">poll</span> Reports
+            </Link>
+            
+          </li>
         </ul>
       </aside>
         {/* End Sidebar */}
@@ -126,7 +131,11 @@ const Dashboard = () => {
               <h3>View Groups</h3>
               <span className="material-icons-outlined">groups</span>
             </div>
-            
+            <div className="card inner">
+              <h3>View Reports</h3>
+              <span className="material-icons-outlined">analytics</span>
+              
+            </div>
           </div>
           <div className="charts">
             <div className="charts-card">

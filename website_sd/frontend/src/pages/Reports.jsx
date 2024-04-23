@@ -238,22 +238,31 @@ const Reports = () => {
             </div>
             <span class="material-icons-outlined">close</span>
           </div>
-          <ul class="sidebar-list">
-            <li class="sidebar-list-item">
-              <span class="material-icons-outlined">groups</span>
-              <a href="/Groups">Groups</a>
-            </li>
-            <li class="sidebar-list-item">
-              <a title="View your Reports" href="/Reports">
-                <span class="material-icons-outlined">poll</span> Reports
-              </a>
-            </li>
-            <li className="sidebar-list-item">
-              <Link to="/Survey" title="Rate your Peers">
-                <span className="material-symbols-outlined">ballot</span> Survey
-              </Link>
-            </li>
-          </ul>
+          <ul className="sidebar-list">
+          {/* View Dashboard */}
+          <li className="sidebar-list-item">         
+              <span className="material-icons-outlined">dashboard</span>
+              <Link to="/Dashboard">
+              Dashboard
+            </Link>
+          </li>
+          {/* View Groups */}
+          <li className="sidebar-list-item">
+            <span className="material-icons-outlined">groups</span>
+            <Link to="/Groups">Groups</Link>
+          </li>
+          <li className="sidebar-list-item">
+            <span className="material-symbols-outlined">Analytics</span>
+            <Link to="/Reports">Reports</Link>
+          </li>
+          <li className="sidebar-list-item">
+            <span className="material-symbols-outlined">ballot</span>
+            <Link to="/Survey">Survey</Link>
+          </li>
+          
+         
+
+        </ul>
         </aside>
 
         {/* End Sidebar */}

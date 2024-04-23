@@ -21,6 +21,7 @@ module.exports.userVerification = (req, res, next) => {
             if (user) {
                 // Attach the entire user object to req
                 req.user = user;
+                res.json({ status: true, user: user.username });
                 next(); // Pass control to the next handler
             } else {
                 return res.status(404).json({ message: "User not found" });

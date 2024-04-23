@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -38,7 +38,7 @@ const Home = () => {
 
   const Logout = () => {
     removeCookie("token");
-    navigate("/login");
+    navigate("/signup");
   };
   const handleDashboardClick = () => { navigate("/dashboard"); };
 
