@@ -60,9 +60,17 @@ const Dashboard = () => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Peer Review Dashboard</title>
       {/* Montserrat Font */}
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+      />
       {/* Material Icons */}
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
       <div className="grid-container">
         {/* Header */}
         <header className="header">
@@ -89,8 +97,7 @@ const Dashboard = () => {
       </div>
         {/* ... */}
         <ul className="sidebar-list">
-          {/* View Dashboard */}
-          <li className="sidebar-list-item">         
+        <li className="sidebar-list-item">         
               <span className="material-icons-outlined">dashboard</span>
               <Link to="/Dashboard">
               Dashboard
@@ -101,14 +108,13 @@ const Dashboard = () => {
             <span className="material-icons-outlined">groups</span>
             <Link to="/Groups">Groups</Link>
           </li>
-          
-          {/* ... other sidebar items ... */}
-          {/* Reports */}
           <li className="sidebar-list-item">
-            <Link to="/Reports" title="View your Reports">
-              <span className="material-icons-outlined">poll</span> Reports
-            </Link>
-            
+            <span className="material-symbols-outlined">Analytics</span>
+            <Link to="/Reports">Reports</Link>
+          </li>
+          <li className="sidebar-list-item">
+            <span className="material-symbols-outlined">ballot</span>
+            <Link to="/Survey">Survey</Link>
           </li>
         </ul>
       </aside>

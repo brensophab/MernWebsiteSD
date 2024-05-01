@@ -76,14 +76,26 @@ const Groups = () => {
             <span class="material-icons-outlined">close</span>
           </div>
           <ul class="sidebar-list">
-            <li class="sidebar-list-item">
-              <span class="material-icons-outlined">dashboard</span>
-              <a href="/Dashboard">Dashboard</a>
-            </li>
-            <li class="sidebar-list-item">
-              <span class="material-icons-outlined">groups</span>
-              <a href="/Groups">Groups</a>
-            </li>
+            {/* View Dashboard */}
+          <li className="sidebar-list-item">         
+              <span className="material-icons-outlined">dashboard</span>
+              <Link to="/Dashboard">
+              Dashboard
+            </Link>
+          </li>
+          {/* View Groups */}
+          <li className="sidebar-list-item">
+            <span className="material-icons-outlined">groups</span>
+            <Link to="/Groups">Groups</Link>
+          </li>
+          <li className="sidebar-list-item">
+            <span className="material-symbols-outlined">Analytics</span>
+            <Link to="/Reports">Reports</Link>
+          </li>
+          <li className="sidebar-list-item">
+            <span className="material-symbols-outlined">ballot</span>
+            <Link to="/Survey">Survey</Link>
+          </li>
 
 
  
